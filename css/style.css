@@ -18,7 +18,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    background-color: transparent;
+    background-color: #f6eee3;
     overflow-x: hidden;
     overflow-y: auto;
     font-family: 'Source Code Pro', monospace;
