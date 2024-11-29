@@ -104,7 +104,7 @@ a {
             transform: translate(-50%, -50%) rotate(360deg) translate(200px) rotate(-360deg);
         }
     }
-    
+
 /* TITLE */
 .title {
     position: relative;
@@ -409,11 +409,11 @@ a {
 .grid-item-quality .caption,
 .grid-item-concept .caption {
     position: absolute;
-    bottom: -150px;
+    bottom: -80px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
+    background-color: #c1af9f;
+    color: #122c34;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
