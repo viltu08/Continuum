@@ -462,7 +462,7 @@ a {
     }
 
     .title .move {
-        letter-spacing: 1px;
+        letter-spacing: 2px;
         gap: 15px;
         font-size: 12pt;
     }
