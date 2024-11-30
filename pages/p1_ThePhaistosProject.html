@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Phaistos Project — Forty-Five Symbols</title>
-    <!-- Import Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@100;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@100;400&display=swap" rel="stylesheet">
-    <link rel="icon" href="assets/images/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/images/favicons/favicon.ico" type="image/x-icon">
 
     <style>
         * {
@@ -29,7 +28,7 @@
             justify-content: center;
             min-height: 100vh;
             padding: 20px;
-            cursor: none;
+            cursor: none; /* Hides the default cursor */
         }
 
         .container {
@@ -37,19 +36,16 @@
             flex-direction: row;
             width: 90%;
             max-width: 1400px;
+            height: 80vh;
             background-color: #122C34;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .left-section,
-        .right-section {
+        .left-section {
             flex: 1;
             padding: 30px;
-        }
-
-        .left-section {
             background-color: #fcbf49;
             color: #122C34;
             font-family: 'Bitter', serif;
@@ -58,33 +54,19 @@
         }
 
         .right-section {
-            background-color: #122C34;
-            color: #ffffff;
+            flex: 1;
+            background-color: #ffffff;
             display: flex;
+            align-items: stretch;
+            justify-content: center;
+            position: relative;
             flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            font-family: 'Bitter', serif;
-            font-size: 10pt;
-            line-height: 1.5;
-        }
-
-        h1 {
-            font-size: 16pt;
-            margin-bottom: 15px;
-        }
-
-        p {
-            margin-bottom: 15px;
-            font-size: 12pt;
         }
 
         iframe {
             width: 100%;
-            height: 300px;
+            height: 100%;
             border: none;
-            border-radius: 10px;
-            margin-top: 20px;
         }
 
         a {
@@ -104,25 +86,15 @@
             color: #122C34;
         }
 
-        .reverse-link {
-            background-color: #fcbf49;
-            color: #122C34;
-        }
-
-        .reverse-link:hover {
-            background-color: #f6eee3;
-            color: #122C34;
-        }
-
-        ::selection {
-            color: #c1af9f;
-            background-color: #122C34;
-        }
-
-        body::-webkit-scrollbar {
+        .fallback-message {
             display: none;
+            text-align: center;
+            color: #122C34;
+            font-size: 12pt;
+            padding: 20px;
         }
 
+        /* Custom Cursor */
         .custom-cursor {
             position: fixed;
             top: 0;
@@ -134,9 +106,9 @@
             z-index: 10000;
             background-color: white;
             border: 2px solid #122C34;
-            transform: translate(-50%, -50%);
         }
 
+        /* Dot revolving on an invisible circle */
         .custom-cursor::before {
             content: '';
             position: absolute;
@@ -147,20 +119,23 @@
             animation: revolve 10s linear infinite;
         }
 
+        /* Dot and circle when hovering over links and items */
         .custom-cursor.hover::before {
             background-color: #c1af9f;
             border: 2px solid #122C34;
             animation-duration: 3s;
             opacity: 50%;
+            z-index: 10001;
         }
 
+        /* Keyframe animation for the revolving dot */
         @keyframes revolve {
             0% {
-                transform: translate(-50%, -50%) rotate(0deg) translate(40px) rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg) translate(100px) rotate(0deg);
             }
 
             100% {
-                transform: translate(-50%, -50%) rotate(360deg) translate(40px) rotate(-360deg);
+                transform: translate(-50%, -50%) rotate(360deg) translate(100px) rotate(-360deg);
             }
         }
 
@@ -169,13 +144,8 @@
                 flex-direction: column;
             }
 
-            .left-section,
-            .right-section {
+            .left-section {
                 padding: 20px;
-            }
-
-            iframe {
-                height: 200px;
             }
 
             h1 {
@@ -193,11 +163,6 @@
             }
 
             p {
-                font-size: 9pt;
-            }
-
-            a {
-                padding: 8px 15px;
                 font-size: 9pt;
             }
         }
@@ -219,45 +184,57 @@
                 Design methodologies are used as a mode of inquiry to develop ethnographic visual narratives that are
                 subjective, stimulating, and capture visual traces of the Anthropocene.
             </p>
-            <a href="http://www.45symbols.com/symbols/" target="_blank">Visit www.45symbols.com/symbols</a>
+            <a href="http://www.45symbols.com/symbols/" target="_blank">45symbols.com/symbols</a>
         </div>
 
         <!-- Right Section -->
         <div class="right-section">
-            <h1>Related Self-project</h1>
-            <iframe src="https://vishakharuhela.com/Shabdkosh-Dictionary"></iframe>
-            <a href="https://vishakharuhela.com/Shabdkosh-Dictionary" target="_blank" class="reverse-link">Shabdkosh</a>
+            <iframe src="http://www.45symbols.com/symbols/" onerror="showFallbackMessage()"></iframe>
+            <div class="fallback-message">
+                <p>Sorry, the preview could not be loaded.</p>
+                <p><a href="http://www.45symbols.com/symbols/" target="_blank">Click here</a> to visit the website directly.</p>
+            </div>
         </div>
     </div>
+
     <script>
+        // ChatGPT has been used to create custom cursor and fallback mechanism for iframe
+        // Custom cursor
         const cursor = document.querySelector('.custom-cursor');
 
-        // Update cursor position
-        document.addEventListener('mousemove', (e) => {
+        // Update cursor position based on mouse movement
+        document.addEventListener('mousemove', e => {
             cursor.style.top = `${e.clientY}px`;
             cursor.style.left = `${e.clientX}px`;
         });
 
-        // Hover effect for interactive elements
-        document.querySelectorAll('a, button').forEach((el) => {
-            el.addEventListener('mouseenter', () => {
+        // Add hover effect for links and interactive items
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseover', () => {
                 cursor.classList.add('hover');
             });
-            el.addEventListener('mouseleave', () => {
+
+            link.addEventListener('mouseout', () => {
                 cursor.classList.remove('hover');
             });
         });
 
-        // Hide cursor when hovering over iframe
-        document.querySelectorAll('iframe').forEach((iframe) => {
-            iframe.addEventListener('mouseenter', () => {
-                cursor.style.display = 'none';
-            });
-
-            iframe.addEventListener('mouseleave', () => {
-                cursor.style.display = 'block';
-            });
+        // Hide custom cursor when hovering over iframe
+        const iframe = document.querySelector('iframe');
+        iframe.addEventListener('mouseenter', () => {
+            cursor.style.display = 'none';
         });
+
+        iframe.addEventListener('mouseleave', () => {
+            cursor.style.display = 'block';
+        });
+
+        // Fallback message for iframe
+        function showFallbackMessage() {
+            const fallback = document.querySelector('.fallback-message');
+            iframe.style.display = 'none';
+            fallback.style.display = 'block';
+        }
     </script>
 
 </body>
