@@ -28,8 +28,6 @@
             justify-content: center;
             min-height: 100vh;
             padding: 20px;
-            cursor: none;
-            /* Hides the default cursor */
         }
 
         .container {
@@ -58,16 +56,24 @@
             flex: 1;
             background-color: #ffffff;
             display: flex;
-            align-items: stretch;
+            align-items: center;
             justify-content: center;
             position: relative;
-            flex-direction: column;
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
+        }
+
+        .fallback-message {
+            display: none;
+            text-align: center;
+            color: #122C34;
+            font-size: 12pt;
+            padding: 20px;
         }
 
         a {
@@ -86,160 +92,61 @@
             background-color: #f6eee3;
             color: #122C34;
         }
-
-        .fallback-message {
-            display: none;
-            text-align: center;
-            color: #122C34;
-            font-size: 12pt;
-            padding: 20px;
-        }
-
-        /* Custom Cursor */
-        .custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            background-color: white;
-            border: 2px solid #122C34;
-        }
-
-        /* Dot revolving on an invisible circle */
-        .custom-cursor::before {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #122C34;
-            border-radius: 50%;
-            animation: revolve 10s linear infinite;
-        }
-
-        /* Dot and circle when hovering over links and items */
-        .custom-cursor.hover::before {
-            background-color: #c1af9f;
-            border: 2px solid #122C34;
-            animation-duration: 3s;
-            opacity: 50%;
-            z-index: 10001;
-        }
-
-        /* Keyframe animation for the revolving dot */
-        @keyframes revolve {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg) translate(100px) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg) translate(100px) rotate(-360deg);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .left-section {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 14pt;
-            }
-
-            p {
-                font-size: 10pt;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 12pt;
-            }
-
-            p {
-                font-size: 9pt;
-            }
-        }
     </style>
 </head>
 
 <body>
-    <div class="custom-cursor"></div>
     <div class="container">
         <!-- Left Section -->
         <div class="left-section">
-            <h1>Shape of Design</h1><br>
-            <p>Action > Narrate</p><br>
+            <h1>Shape of Design</h1>
+            <p>Action > Narrate</p>
             <p>
                 The Shape of Design by Frank Chimero is a thoughtful exploration of the creative process and the broader
                 impact of design on culture and society. Rather than focusing on technical skills or software tutorials,
                 the book delves into the philosophical and emotional aspects of creating. Chimero examines how designers
                 shape their work and, in turn, how their work shapes the world and its audiences. Through a blend of
                 essays and poetic reflections, the book encourages readers to consider storytelling, intuition, and
-                empathy as essential elements of design. It's a guide for anyone seeking to cultivate a more meaningful
+                empathy as essential elements of design. It’s a guide for anyone seeking to cultivate a more meaningful
                 and human-centered approach to creativity, regardless of medium.
-            </p><br>
+            </p>
             <a href="https://shapeofdesignbook.com/" target="_blank">shapeofdesignbook.com/</a>
         </div>
 
         <!-- Right Section -->
         <div class="right-section">
-            <iframe src="https://shapeofdesignbook.com/" onerror="showFallbackMessage()"></iframe>
-            <div class="fallback-message">
-                <p>Sorry, the preview could not be loaded.</p>
-                <p><a href="http://www.45symbols.com/symbols/" target="_blank">Click here</a> to visit the website
+            <iframe id="contentIframe" src="https://shapeofdesignbook.com/"></iframe>
+            <div class="fallback-message" id="fallbackMessage">
+                <p>Sorry, the preview could not be loaded because of the resource website's privacy policy.</p>
+                <p><a href="https://shapeofdesignbook.com/" target="_blank">Click here</a> to visit the website
                     directly.</p>
             </div>
         </div>
     </div>
 
     <script>
-        // ChatGPT has been used to create custom cursor and fallback mechanism for iframe
-        // Custom cursor
-        const cursor = document.querySelector('.custom-cursor');
+        // ChatGPT has been used to create the custom cursor and understand fallback mechanism for iframe
+        // Check if the iframe fails to load
+        const iframe = document.getElementById('contentIframe');
+        const fallback = document.getElementById('fallbackMessage');
 
-        // Update cursor position based on mouse movement
-        document.addEventListener('mousemove', e => {
-            cursor.style.top = `${e.clientY}px`;
-            cursor.style.left = `${e.clientX}px`;
-        });
+        // Set a timeout to check iframe loading status
+        setTimeout(() => {
+            try {
+                // Attempt to access iframe content to see if it loaded
+                const iframeContent = iframe.contentDocument || iframe.contentWindow.document;
 
-        // Add hover effect for links and interactive items
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseover', () => {
-                cursor.classList.add('hover');
-            });
-
-            link.addEventListener('mouseout', () => {
-                cursor.classList.remove('hover');
-            });
-        });
-
-        // Hide custom cursor when hovering over iframe
-        const iframe = document.querySelector('iframe');
-        iframe.addEventListener('mouseenter', () => {
-            cursor.style.display = 'none';
-        });
-
-        iframe.addEventListener('mouseleave', () => {
-            cursor.style.display = 'block';
-        });
-
-        // Fallback message for iframe
-        function showFallbackMessage() {
-            const fallback = document.querySelector('.fallback-message');
-            iframe.style.display = 'none';
-            fallback.style.display = 'block';
-        }
+                // If the content is inaccessible or empty, show the fallback
+                if (!iframeContent || !iframeContent.body.childNodes.length) {
+                    throw new Error("Iframe content not accessible");
+                }
+            } catch (error) {
+                console.error("Fallback triggered:", error);
+                iframe.style.display = 'none';
+                fallback.style.display = 'block';
+            }
+        }, 3000); // Adjust timeout as needed (e.g., 3 seconds)
     </script>
-
 </body>
 
 </html>

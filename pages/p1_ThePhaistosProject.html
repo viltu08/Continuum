@@ -56,16 +56,16 @@
             flex: 1;
             background-color: #ffffff;
             display: flex;
-            align-items: stretch;
+            align-items: center;
             justify-content: center;
             position: relative;
-            flex-direction: column;
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
 
         .fallback-message {
@@ -75,6 +75,23 @@
             font-size: 12pt;
             padding: 20px;
         }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #122C34;
+            color: #fcbf49;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            background-color: #f6eee3;
+            color: #122C34;
+        }
     </style>
 </head>
 
@@ -82,8 +99,8 @@
     <div class="container">
         <!-- Left Section -->
         <div class="left-section">
-            <h1>The Phaistos Project — Forty-five Symbols</h1><br>
-            <p>Action > Gather</p><br>
+            <h1>The Phaistos Project — Forty-five Symbols</h1>
+            <p>Action > Gather</p>
             <p>
                 The Phaistos Disc, which was discovered in 1908 and is thought to date to around 1700 BC, is a circular
                 piece of fired clay stamped with forty-five distinct symbols. This code is still unresolved. It inspires
@@ -92,7 +109,7 @@
                 Design methodologies are used as a mode of inquiry to develop ethnographic visual narratives that are
                 subjective, stimulating, and capture visual traces of the Anthropocene.
             </p>
-            <a href="http://www.45symbols.com/symbols/" target="_blank">45symbols.com</a>
+            <a href="http://www.45symbols.com/symbols/" target="_blank">Visit 45symbols.com</a>
         </div>
 
         <!-- Right Section -->
