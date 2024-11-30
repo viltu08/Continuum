@@ -28,7 +28,8 @@
             justify-content: center;
             min-height: 100vh;
             padding: 20px;
-            cursor: none; /* Hides the default cursor */
+            cursor: none;
+            /* Hides the default cursor */
         }
 
         .container {
@@ -189,10 +190,12 @@
 
         <!-- Right Section -->
         <div class="right-section">
-            <iframe src="http://www.45symbols.com/symbols/" onerror="showFallbackMessage()"></iframe>
+            <iframe src="http://www.45symbols.com/symbols/" onload="hideFallbackMessage()"
+                onerror="showFallbackMessage()"></iframe>
             <div class="fallback-message">
-                <p>Sorry, the preview could not be loaded.</p>
-                <p><a href="http://www.45symbols.com/symbols/" target="_blank">Click here</a> to visit the website directly.</p>
+                <p>Sorry, the preview could not be loaded because of the resource website's privacy policy.</p>
+                <p><a href="http://www.45symbols.com/symbols/" target="_blank">Click here</a> to visit the website
+                    directly.</p>
             </div>
         </div>
     </div>
@@ -231,10 +234,19 @@
 
         // Fallback message for iframe
         function showFallbackMessage() {
+            console.log("Fallback triggered");
             const fallback = document.querySelector('.fallback-message');
+            const iframe = document.querySelector('iframe');
             iframe.style.display = 'none';
             fallback.style.display = 'block';
         }
+
+        function hideFallbackMessage() {
+            console.log("Iframe loaded successfully");
+            const fallback = document.querySelector('.fallback-message');
+            fallback.style.display = 'none';
+        }
+
     </script>
 
 </body>
