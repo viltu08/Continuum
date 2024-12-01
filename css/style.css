@@ -310,7 +310,7 @@ Gunmetal #122C34 (Title)
        font-size: 16px;
        transform: translateX(-50%);
        white-space: nowrap;
-       z-index: 100;
+       z-index: 3000;
    }
 
 
@@ -379,6 +379,7 @@ Gunmetal #122C34 (Title)
        position: relative;
        transition: border-color 0.3s ease, border-radius 0.3s ease;
        z-index: 1;
+       flex-direction: column;
    }
 
    .grid-item-action {
@@ -408,7 +409,7 @@ Gunmetal #122C34 (Title)
    .grid-item-quality .caption,
    .grid-item-concept .caption {
        position: absolute;
-       bottom: -80px;
+       bottom: 30px;
        left: 50%;
        transform: translateX(-50%);
        background-color: #c1af9f;
@@ -420,7 +421,7 @@ Gunmetal #122C34 (Title)
        opacity: 0;
        visibility: hidden;
        transition: opacity 0.3s ease, visibility 0.3s ease;
-       z-index: 100;
+       z-index: 4000;
    }
 
    /* Hover effect: Scale filled cells, change border color and caption appears */
@@ -429,13 +430,17 @@ Gunmetal #122C34 (Title)
    .grid-item-concept:hover {
        border-color: #122C34;
        border-radius: 20px;
+       z-index: 1000;
    }
 
    .grid-item-action:hover .caption,
-   .grid-item-quality:hover .caption .grid-item-concept:hover .caption {
+   .grid-item-quality:hover .caption,
+   .grid-item-concept:hover .caption {
        opacity: 1;
        visibility: visible;
-       transform: translateX(-50%) translateY(-10px);
+       transform: translateX(-50%) translateY(-20px);
+       bottom: 30px;
+       z-index: 6000;
    }
 
    /* Responsive design */
