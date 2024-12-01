@@ -254,8 +254,7 @@ Gunmetal #122C34 (Title)
        display: none;
        grid-column: 1 / -1;
        justify-content: center;
-       gap: 10px;
-       margin: 10px;
+       gap: 5px;
        flex-wrap: wrap;
        z-index: 60;
        padding-top: 30px;
