@@ -69,7 +69,7 @@ Gunmetal #122C34 (Title)
        border-radius: 50%;
        pointer-events: none;
        z-index: 10000;
-       background-color: white;
+       background-color: #c1af9f;
        border: 2px solid #122C34;
    }
 
@@ -437,18 +437,6 @@ Gunmetal #122C34 (Title)
        visibility: visible;
        transform: translateX(-50%) translateY(-10px);
    }
-
-   /* Line that connects same ID grid items */
-   .connections {
-       position: absolute;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       pointer-events: none;
-   }
-
-
 
    /* Responsive design */
    @media (max-width: 1024px) {
