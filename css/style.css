@@ -143,6 +143,11 @@ Gunmetal #122C34 (Title)
            5px 5px 0 #469056;
    }
 
+   .title a {
+    text-decoration: none;
+    color: inherit;
+}
+
    /* Menu Styles */
    .menu {
        display: flex;
