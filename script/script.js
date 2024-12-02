@@ -104,7 +104,7 @@ document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
             });
         }
 
-        // Ensure URL stays on the homepage by resetting the hash
+        // Ensure URL stays on the homepage by resetting hash
         history.pushState(null, '', '#');
     });
 });
