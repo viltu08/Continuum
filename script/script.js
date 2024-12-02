@@ -3,14 +3,23 @@
 // Ensure grid size stays consistent
 const ensureGridSize = () => {
     const gridItemsContainer = document.querySelector('.grid-items');
-    const columns = getComputedStyle(gridItemsContainer).getPropertyValue('grid-template-columns').split(' ').length;
-    const rowHeight = gridItemsContainer.offsetWidth / columns;
-
-    // Set consistent row height
-    gridItemsContainer.style.gridAutoRows = `${rowHeight}px`;
+    if (gridItemsContainer) {
+        const columns = getComputedStyle(gridItemsContainer)
+            .getPropertyValue('grid-template-columns')
+            .split(' ').length;
+        if (columns > 0) {
+            const rowHeight = gridItemsContainer.offsetWidth / columns;
+            gridItemsContainer.style.gridAutoRows = `${rowHeight}px`;
+        }
+    }
 };
 
-window.addEventListener('resize', ensureGridSize);
+// Debounce resize event for better performance
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(ensureGridSize, 150);
+});
 ensureGridSize();
 
 // Handle main menu item clicks
@@ -59,22 +68,72 @@ document.querySelectorAll('.menu-item').forEach(menuItem => {
     });
 });
 
+// Handle submenu item clicks
+document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
+    subMenuItem.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior to avoid URL hash change
+
+        // Get the target grid-item ID
+        const targetId = subMenuItem.getAttribute('href').replace('#', ''); // Extract the target ID
+
+        // Select all related grid-items
+        const matchingItems = document.querySelectorAll(`#${targetId}-item1, #${targetId}-item2`);
+
+        // Check if any of the captions are currently visible
+        let anyVisible = false;
+        matchingItems.forEach(item => {
+            const caption = item.querySelector('.caption');
+            if (caption && caption.classList.contains('visible')) {
+                anyVisible = true;
+            }
+        });
+
+        // Toggle captions visibility
+        if (anyVisible) {
+            // Hide captions if they are already visible
+            matchingItems.forEach(item => {
+                const caption = item.querySelector('.caption');
+                if (caption) {
+                    caption.classList.remove('visible');
+                }
+            });
+        } else {
+            // Hide all captions first to reset state
+            document.querySelectorAll('.grid-items .caption').forEach(caption => {
+                caption.classList.remove('visible');
+            });
+
+            // Show captions for the matching items
+            matchingItems.forEach(item => {
+                const caption = item.querySelector('.caption');
+                if (caption) {
+                    caption.classList.add('visible');
+                }
+            });
+        }
+
+        // Ensure URL stays on the homepage by resetting hash
+        history.pushState(null, '', 'https://viltu08.github.io/Continuum/');
+    });
+});
+
 // Custom cursor
 const cursor = document.querySelector('.custom-cursor');
-
-// Update cursor position based on mouse movement
-document.addEventListener('mousemove', e => {
-    cursor.style.top = `${e.clientY}px`;
-    cursor.style.left = `${e.clientX}px`;
-});
-
-// Add hover effect for links and interactive items
-document.querySelectorAll('a, .menu-item').forEach(link => {
-    link.addEventListener('mouseover', () => {
-        cursor.classList.add('hover');
+if (cursor) {
+    // Update cursor position based on mouse movement
+    document.addEventListener('mousemove', e => {
+        cursor.style.top = `${e.clientY}px`;
+        cursor.style.left = `${e.clientX}px`;
     });
 
-    link.addEventListener('mouseout', () => {
-        cursor.classList.remove('hover');
+    // Add hover effect for links and interactive items
+    document.querySelectorAll('a, .menu-item, .sub-menu-item').forEach(link => {
+        link.addEventListener('mouseover', () => {
+            cursor.classList.add('hover');
+        });
+
+        link.addEventListener('mouseout', () => {
+            cursor.classList.remove('hover');
+        });
     });
-});
+}
