@@ -1,5 +1,3 @@
-// Chat GPT has been used to understand automated grid generation, item click behavior and custom cursor
-
 // Ensure grid size stays consistent
 const ensureGridSize = () => {
     const gridItemsContainer = document.querySelector('.grid-items');
@@ -53,32 +51,24 @@ document.querySelectorAll('.menu-item').forEach(menuItem => {
             // Show the corresponding submenu
             if (targetMenu) targetMenu.classList.add('active');
         }
+
+        // Reset URL to homepage
+        history.pushState(null, '', '#');
     });
 });
 
-// Handle submenu item clicks part 1
+// Handle submenu item clicks
 document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
-    subMenuItem.addEventListener('click', () => {
-        // Toggle the active state of the clicked submenu item
-        const isActive = subMenuItem.classList.contains('active');
-        if (isActive) {
-            subMenuItem.classList.remove('active');
-        } else {
-            subMenuItem.classList.add('active');
-        }
-    });
-});
+    subMenuItem.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior to avoid URL hash change
 
-// Handle submenu item clicks part 2
-document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
-    subMenuItem.addEventListener('click', () => {
         // Get the target grid-item ID
         const targetId = subMenuItem.getAttribute('href').replace('#', ''); // Extract the target ID
 
         // Select all related grid-items
         const matchingItems = document.querySelectorAll(`#${targetId}-item1, #${targetId}-item2`);
 
-        // Check if the captions are currently visible
+        // Check if any of the captions are currently visible
         let anyVisible = false;
         matchingItems.forEach(item => {
             const caption = item.querySelector('.caption');
@@ -89,7 +79,7 @@ document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
 
         // Toggle captions visibility
         if (anyVisible) {
-            // Hide captions if already visible
+            // Hide captions if they are already visible
             matchingItems.forEach(item => {
                 const caption = item.querySelector('.caption');
                 if (caption) {
@@ -104,7 +94,7 @@ document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
                 caption.style.visibility = 'hidden';
             });
 
-            // Show captions for matching items
+            // Show captions for the matching items
             matchingItems.forEach(item => {
                 const caption = item.querySelector('.caption');
                 if (caption) {
@@ -113,10 +103,11 @@ document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
                 }
             });
         }
+
+        // Ensure URL stays on the homepage by resetting the hash
+        history.pushState(null, '', '#');
     });
 });
-
-
 
 
 // Custom cursor

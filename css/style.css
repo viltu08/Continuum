@@ -428,7 +428,7 @@ Gunmetal #122C34 (Title)
    .grid-item-quality:hover,
    .grid-item-concept:hover {
        border-color: #122C34;
-       border-radius: 20px;
+       border-radius: 50%;
        z-index: 1000;
    }
 
