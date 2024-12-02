@@ -1,3 +1,5 @@
+// CHatGPT has been used to understand item clicks toggling, custom cursor and grid generation
+
 // Ensure grid size stays consistent
 const ensureGridSize = () => {
     const gridItemsContainer = document.querySelector('.grid-items');
@@ -57,59 +59,6 @@ document.querySelectorAll('.menu-item').forEach(menuItem => {
     });
 });
 
-// Handle submenu item clicks
-document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
-    subMenuItem.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent default link behavior to avoid URL hash change
-
-        // Get the target grid-item ID
-        const targetId = subMenuItem.getAttribute('href').replace('#', ''); // Extract the target ID
-
-        // Select all related grid-items
-        const matchingItems = document.querySelectorAll(`#${targetId}-item1, #${targetId}-item2`);
-
-        // Check if any of the captions are currently visible
-        let anyVisible = false;
-        matchingItems.forEach(item => {
-            const caption = item.querySelector('.caption');
-            if (caption && caption.style.opacity === '1') {
-                anyVisible = true;
-            }
-        });
-
-        // Toggle captions visibility
-        if (anyVisible) {
-            // Hide captions if they are already visible
-            matchingItems.forEach(item => {
-                const caption = item.querySelector('.caption');
-                if (caption) {
-                    caption.style.opacity = '0';
-                    caption.style.visibility = 'hidden';
-                }
-            });
-        } else {
-            // Hide all captions first to reset state
-            document.querySelectorAll('.grid-items .caption').forEach(caption => {
-                caption.style.opacity = '0';
-                caption.style.visibility = 'hidden';
-            });
-
-            // Show captions for the matching items
-            matchingItems.forEach(item => {
-                const caption = item.querySelector('.caption');
-                if (caption) {
-                    caption.style.opacity = '1';
-                    caption.style.visibility = 'visible';
-                }
-            });
-        }
-
-        // Ensure URL stays on the homepage by resetting hash
-        history.pushState(null, '', '#');
-    });
-});
-
-
 // Custom cursor
 const cursor = document.querySelector('.custom-cursor');
 
@@ -120,7 +69,7 @@ document.addEventListener('mousemove', e => {
 });
 
 // Add hover effect for links and interactive items
-document.querySelectorAll('a, .menu-item, .sub-menu-item').forEach(link => {
+document.querySelectorAll('a, .menu-item').forEach(link => {
     link.addEventListener('mouseover', () => {
         cursor.classList.add('hover');
     });
