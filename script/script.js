@@ -55,7 +55,7 @@ document.querySelectorAll('.menu-item').forEach(menuItem => {
         }
 
         // Reset URL to homepage
-        history.pushState(null, '', '#');
+        history.pushState(null, '', 'https://viltu08.github.io/Continuum/');
     });
 });
 
