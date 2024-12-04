@@ -28,6 +28,7 @@
             justify-content: center;
             min-height: 100vh;
             padding: 20px;
+            cursor: auto;
         }
 
         p {
@@ -40,11 +41,76 @@
             flex-direction: row;
             width: 90%;
             max-width: 1400px;
-            height: 80vh;
+            height: 70vh;
             background-color: #122C34;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Selection */
+        ::selection {
+            color: #c1af9f;
+            background-color: #122C34;
+        }
+
+        /* No scrollbar */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* No Default Cursor */
+        body {
+            cursor: none;
+        }
+
+        a {
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            background-color: #c1af9f;
+            border: 2px solid #122C34;
+        }
+
+        /* Dot revolving on an invisible circle */
+        .custom-cursor::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #122C34;
+            border-radius: 50%;
+            animation: revolve 10s linear infinite;
+        }
+
+        /* Dot and circle when hovering over links and items */
+        .custom-cursor.hover::before {
+            background-color: #c1af9f;
+            border: 2px solid #122C34;
+            animation-duration: 3s;
+            opacity: 50%;
+            z-index: 10001;
+        }
+
+        /* Keyframe animation for the revolving dot */
+        @keyframes revolve {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg) translate(200px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg) translate(200px) rotate(-360deg);
+            }
         }
 
         .left-section {
@@ -97,11 +163,32 @@
             background-color: #f6eee3;
             color: #122C34;
         }
+
+        .notes-section {
+            width: 90%;
+            max-width: 1400px;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #122C34;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            font-family: 'Source Code Pro', monospace;
+            color: #f6eee3;
+        }
+
+        .notes-section h2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #f6eee3;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <div class="custom-cursor"></div>
+        <div class="center-dot"></div>
         <!-- Left Section -->
         <div class="left-section">
             <h1>Sounds Found</h1><br>
@@ -126,8 +213,14 @@
         </div>
     </div>
 
+    <!-- Notes Section -->
+    <div class="notes-section">
+        <h2>Notes</h2>
+        <p> This project inspired the Shabdkosh project and experimenting with different meanings of a dictionary.</p>
+    </div>
+
     <script>
-        // ChatGPT has been used to create the custom cursor and understand fallback mechanism for iframe
+        // ChatGPT has been used to help understand iframe behavior and custom cursor
         // Check if the iframe fails to load
         const iframe = document.getElementById('contentIframe');
         const fallback = document.getElementById('fallbackMessage');
@@ -147,7 +240,28 @@
                 iframe.style.display = 'none';
                 fallback.style.display = 'block';
             }
-        }, 300000);
+        }, 1000);
+
+        // Custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) {
+            // Update cursor position based on mouse movement
+            document.addEventListener('mousemove', e => {
+                cursor.style.top = `${e.clientY}px`;
+                cursor.style.left = `${e.clientX}px`;
+            });
+
+            // Add hover effect for links and interactive items
+            document.querySelectorAll('a, .menu-item, .sub-menu-item').forEach(link => {
+                link.addEventListener('mouseover', () => {
+                    cursor.classList.add('hover');
+                });
+
+                link.addEventListener('mouseout', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+        }
     </script>
 </body>
 
