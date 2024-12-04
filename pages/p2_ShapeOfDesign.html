@@ -222,7 +222,7 @@
     </div>
 
     <script>
-        // ChatGPT has been used to create the custom cursor and understand fallback mechanism for iframe
+        // ChatGPT has been used to help understand iframe behavior and custom cursor
         // Check if the iframe fails to load
         const iframe = document.getElementById('contentIframe');
         const fallback = document.getElementById('fallbackMessage');
@@ -242,7 +242,28 @@
                 iframe.style.display = 'none';
                 fallback.style.display = 'block';
             }
-        }, 300000);
+        }, 1000);
+
+        // Custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) {
+            // Update cursor position based on mouse movement
+            document.addEventListener('mousemove', e => {
+                cursor.style.top = `${e.clientY}px`;
+                cursor.style.left = `${e.clientX}px`;
+            });
+
+            // Add hover effect for links and interactive items
+            document.querySelectorAll('a, .menu-item, .sub-menu-item').forEach(link => {
+                link.addEventListener('mouseover', () => {
+                    cursor.classList.add('hover');
+                });
+
+                link.addEventListener('mouseout', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+        }
     </script>
 </body>
 
