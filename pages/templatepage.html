@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@100;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/images/favicons/favicon.ico" type="image/x-icon">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            color: #122C34;
+            background-color: #f6eee3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            cursor: auto;
+        }
+
+        p {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 90%;
+            max-width: 1400px;
+            height: 70vh;
+            background-color: #122C34;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Selection */
+        ::selection {
+            color: #c1af9f;
+            background-color: #122C34;
+        }
+
+        /* No scrollbar */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* No Default Cursor */
+        body {
+            cursor: none;
+        }
+
+        a {
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            background-color: #c1af9f;
+            border: 2px solid #122C34;
+        }
+
+        /* Dot revolving on an invisible circle */
+        .custom-cursor::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #122C34;
+            border-radius: 50%;
+            animation: revolve 10s linear infinite;
+        }
+
+        /* Dot and circle when hovering over links and items */
+        .custom-cursor.hover::before {
+            background-color: #c1af9f;
+            border: 2px solid #122C34;
+            animation-duration: 3s;
+            opacity: 50%;
+            z-index: 10001;
+        }
+
+        /* Keyframe animation for the revolving dot */
+        @keyframes revolve {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg) translate(200px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg) translate(200px) rotate(-360deg);
+            }
+        }
+
+        .left-section {
+            flex: 1;
+            padding: 30px;
+            background-color: #fcbf49;
+            color: #122C34;
+            font-family: 'Bitter', serif;
+            font-size: 11pt;
+            line-height: 1.7;
+        }
+
+        .right-section {
+            flex: 1;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .fallback-message {
+            display: none;
+            text-align: center;
+            color: #122C34;
+            font-size: 12pt;
+            padding: 20px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #122C34;
+            color: #fcbf49;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            background-color: #f6eee3;
+            color: #122C34;
+        }
+
+        .notes-section {
+            width: 90%;
+            max-width: 1400px;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #122C34;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            font-family: 'Source Code Pro', monospace;
+            color: #f6eee3;
+        }
+
+        .notes-section h2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #f6eee3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="custom-cursor"></div>
+        <div class="center-dot"></div>
+        <!-- Left Section -->
+        <div class="left-section">
+            <h1>Title</h1><br>
+            <p>Menu > Sub Menu</p><br>
+            <p>
+                Description
+            </p>
+            <a href="site url" target="_blank">Site name</a>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <iframe id="contentIframe" src="site url"></iframe>
+            <div class="fallback-message" id="fallbackMessage">
+                <p>Sorry, the preview could not be loaded because of the resource website's privacy policy.</p>
+                <p><a href="site url" target="_blank">Click here</a> to visit the website
+                    directly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notes Section -->
+    <div class="notes-section">
+        <h2>Notes</h2>
+        <p> Notes will appear here.</p>
+    </div>
+
+    <script>
+        // ChatGPT has been used to help understand iframe behavior and custom cursor
+        // Check if the iframe fails to load
+        const iframe = document.getElementById('contentIframe');
+        const fallback = document.getElementById('fallbackMessage');
+
+        // Set a timeout to check iframe loading status
+        setTimeout(() => {
+            try {
+                // Attempt to access iframe content to see if it loaded
+                const iframeContent = iframe.contentDocument || iframe.contentWindow.document;
+
+                // If the content is inaccessible or empty, show the fallback
+                if (!iframeContent || !iframeContent.body.childNodes.length) {
+                    throw new Error("Iframe content not accessible");
+                }
+            } catch (error) {
+                console.error("Fallback triggered:", error);
+                iframe.style.display = 'none';
+                fallback.style.display = 'block';
+            }
+        }, 100000);
+
+        // Custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) {
+            // Update cursor position based on mouse movement
+            document.addEventListener('mousemove', e => {
+                cursor.style.top = `${e.clientY}px`;
+                cursor.style.left = `${e.clientX}px`;
+            });
+
+            // Add hover effect for links and interactive items
+            document.querySelectorAll('a, .menu-item, .sub-menu-item').forEach(link => {
+                link.addEventListener('mouseover', () => {
+                    cursor.classList.add('hover');
+                });
+
+                link.addEventListener('mouseout', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
