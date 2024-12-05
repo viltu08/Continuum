@@ -110,21 +110,20 @@ Gunmetal #122C34 (Title)
        height: 50px;
        width: 100vw;
        overflow: hidden;
-       background-color: transparent;
        display: flex;
        align-items: center;
        justify-content: center;
        text-align: center;
        z-index: 1;
-       padding-bottom: 30px;
-       padding-top: 30px;
+       padding-bottom: 40px;
+       padding-top: 40px;
    }
 
    .title .move {
        display: flex;
        gap: 50px;
        font-family: 'Bitter', serif;
-       font-size: 30pt;
+       font-size: 40pt;
        color: #122C34;
        letter-spacing: 5px;
    }
@@ -144,9 +143,32 @@ Gunmetal #122C34 (Title)
    }
 
    .title a {
-    text-decoration: none;
-    color: #122C34;
-}
+       text-decoration: none;
+       color: #122C34;
+   }
+
+   /* SUBTITLE */
+   .subtitle {
+       text-align: center;
+       font-family: 'Source Code Pro', monospace;
+       font-size: 20px;
+       color: #122C34;
+       z-index: 2;
+       position: absolute;
+       top: 100px;
+       left: 50%;
+       transform: translateX(-50%);
+       border: 1px solid #122C34;
+       border-radius: 20px;
+       background-color: rgba(255, 255, 255, 0.2);
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+
+   .subtitle p {
+       margin: 10px;
+       padding: 5px 10px;
+       z-index: 1;
+   }
 
    /* Menu Styles */
    .menu {
@@ -155,13 +177,14 @@ Gunmetal #122C34 (Title)
        justify-content: center;
        align-items: center;
        gap: 20px;
-       margin-top: 10px;
+       margin-top: 50px;
        margin-bottom: 10px;
        width: 100%;
        position: relative;
        z-index: auto;
-       padding-top: 30px;
+       padding-top: 60px;
        padding-bottom: 30px;
+       text-align: center;
    }
 
    .menu-item {
@@ -170,89 +193,43 @@ Gunmetal #122C34 (Title)
        text-decoration: none;
        color: #122C34;
        padding: 10px 20px;
-       border: 2px solid transparent;
        border-radius: 20px;
        transition: background-color 0.3s ease, color 0.3s ease;
        position: relative;
        z-index: 10;
+       background-color: rgba(255, 255, 255, 0.2);
    }
 
-   /* Hover line styles for main menu */
-   .menu-item .hover-line-top,
-   .menu-item .hover-line-bottom {
-       display: none;
-       position: absolute;
-       left: 50%;
-       width: 2px;
-       height: 0;
-       background-color: #122C34;
-       transition: height 0.3s ease;
-       transform: translateX(-50%);
-       z-index: 5;
-       overflow: hidden;
-   }
-
-   .menu-item .hover-line-top {
-       top: -30px;
-   }
-
-   .menu-item .hover-line-bottom {
-       bottom: -30px;
-   }
-
-   .menu-item .hover-label-top,
-   .menu-item .hover-label-bottom {
-       display: none;
-       position: absolute;
-       left: 50%;
-       background-color: #c1af9f;
-       padding: 5px 10px;
-       border-radius: 5px;
-       font-size: 16px;
-       white-space: nowrap;
-       transform: translateX(-50%);
-       z-index: 100;
-   }
-
-   .menu-item .hover-label-top {
-       top: -50px;
-       color: white;
-   }
-
-   .menu-item .hover-label-bottom {
-       bottom: -50px;
-       color: #122C34;
-   }
-
-   /* Show lines and labels on hover */
-   .menu-item:hover .hover-line-top,
-   .menu-item:hover .hover-line-bottom {
-       display: block;
-       height: 28px;
-   }
-
-   .menu-item:hover .hover-label-top,
-   .menu-item:hover .hover-label-bottom {
-       display: block;
-   }
-
-   .menu-action:hover {
+   .menu-action {
        background-color: #fcbf49;
        color: #ffffff;
        z-index: 9000;
    }
 
-   .menu-quality:hover {
+   .menu-quality {
        background-color: #469056;
        color: #ffffff;
        z-index: 9000;
    }
 
-   .menu-concept:hover {
+   .menu-concept {
        background-color: #3557ff;
        color: #ffffff;
        z-index: 9000;
    }
+
+   .menu-action:hover {
+       border: 2px solid #122C34;
+   }
+
+   .menu-quality:hover {
+       border: 2px solid #122C34;
+   }
+
+   .menu-concept:hover {
+       border: 2px solid #122C34;
+   }
+
 
    /* Sub-menu containers */
    .sub-menu-container {
@@ -262,8 +239,8 @@ Gunmetal #122C34 (Title)
        gap: 5px;
        flex-wrap: wrap;
        z-index: 60;
-       padding-top: 30px;
-       padding-bottom: 30px;
+       padding-top: 50px;
+       padding-bottom: 15px;
    }
 
    .sub-menu-container.active {
@@ -280,6 +257,21 @@ Gunmetal #122C34 (Title)
        transition: background-color 0.3s ease;
        position: relative;
        z-index: 60;
+   }
+
+   .sub-menu-container#action-menu .sub-menu-item {
+       background-color: #fcbf49;
+       color: #ffffff;
+   }
+
+   .sub-menu-container#quality-menu .sub-menu-item {
+       background-color: #469056;
+       color: #ffffff;
+   }
+
+   .sub-menu-container#concept-menu .sub-menu-item {
+       background-color: #3557ff;
+       color: #ffffff;
    }
 
    /* Hover line styles for sub-menu */
@@ -346,18 +338,18 @@ Gunmetal #122C34 (Title)
 
    /* Sub menu colour change when hovering */
    .sub-menu-container#action-menu .sub-menu-item:hover {
-       background-color: #fcbf49;
-       color: #ffffff;
+    color: #122C34;
+    border: 2px solid #122C34;
    }
 
    .sub-menu-container#quality-menu .sub-menu-item:hover {
-       background-color: #469056;
-       color: #ffffff;
+    color: #122C34;
+    border: 2px solid #122C34;
    }
 
    .sub-menu-container#concept-menu .sub-menu-item:hover {
-       background-color: #3557ff;
-       color: #ffffff;
+    color: #122C34;
+    border: 2px solid #122C34;
    }
 
    /* Styles for action, quality, and concept grid items */
