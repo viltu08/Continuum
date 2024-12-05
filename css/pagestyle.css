@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Code Pro', monospace;
+    color: #122C34;
+    background-color: #f6eee3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    cursor: auto;
+}
+
+p {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    max-width: 1400px;
+    height: 70vh;
+    background-color: #122C34;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+
+/* Selection */
+::selection {
+    color: #c1af9f;
+    background-color: #122C34;
+}
+
+/* No scrollbar */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* No Default Cursor */
+body {
+    cursor: none;
+}
+
+a {
+    cursor: none;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    background-color: #c1af9f;
+    border: 2px solid #122C34;
+}
+
+/* Dot revolving on an invisible circle */
+.custom-cursor::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #122C34;
+    border-radius: 50%;
+    animation: revolve 10s linear infinite;
+}
+
+/* Dot and circle when hovering over links and items */
+.custom-cursor.hover::before {
+    background-color: #c1af9f;
+    border: 2px solid #122C34;
+    animation-duration: 3s;
+    opacity: 50%;
+    z-index: 10001;
+}
+
+/* Keyframe animation for the revolving dot */
+@keyframes revolve {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translate(200px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translate(200px) rotate(-360deg);
+    }
+}
+
+/* Main left and right sections */
+
+.left-section {
+    flex: 1;
+    padding: 30px;
+    background-color: #fcbf49;
+    color: #122C34;
+    font-family: 'Bitter', serif;
+    font-size: 11pt;
+    line-height: 1.7;
+    overflow-y: auto;
+}
+
+.right-section {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Website preview section */
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.fallback-message {
+    display: none;
+    text-align: center;
+    color: #122C34;
+    font-size: 12pt;
+    padding: 20px;
+}
+
+/* Links */
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #122C34;
+    color: #fcbf49;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 10px;
+}
+
+a:hover {
+    background-color: #f6eee3;
+    color: #122C34;
+}
+
+/* Notes section */
+
+.notes-section {
+    width: 90%;
+    max-width: 1400px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #122C34;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    font-family: 'Source Code Pro', monospace;
+    color: #f6eee3;
+}
+
+.notes-section h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #f6eee3;
+}
+
+/* Menu Items Colour and Style coding to keep coherent with homepage */
+/* Note that here I use tags as generic name for menu and sub items both */
+
+.tags {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 15pt;
+    text-decoration: none;
+    color: #122C34;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid #122C34;
+    width: fit-content;
+}
+
+.tags-action {
+    background-color: #fcbf49;
+    color: #ffffff;
+    z-index: 9000;
+}
+
+.tags-quality {
+    background-color: #469056;
+    color: #ffffff;
+    z-index: 9000;
+}
+
+.tags-concept {
+    background-color: #3557ff;
+    color: #ffffff;
+    z-index: 9000;
+}
