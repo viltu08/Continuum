@@ -25,7 +25,7 @@
         // Usage
         const iframe = document.getElementById('contentIframe');
         const fallback = document.getElementById('fallbackMessage');
-        checkIframeWithTimeout(iframe, fallback, 10000); // 10-second timeout
+        checkIframeWithTimeout(iframe, fallback, 600000); // 1 Hr timeout
         
 
         // Custom cursor
