@@ -1,6 +1,6 @@
  // ChatGPT has been used to help understand iframe behavior and custom cursor
         // Check if the iframe fails to load
-        function checkIframeWithTimeout(iframe, fallback, maxTimeout = 10000) {
+        function checkIframeWithTimeout(iframe, fallback, maxTimeout = 3000) {
             let iframeLoaded = false;
         
             // Event listener for iframe load event
