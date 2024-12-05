@@ -1,5 +1,6 @@
 // CHatGPT has been used to understand item clicks toggling, custom cursor and grid generation
 
+// 1
 // Ensure grid size stays consistent
 const ensureGridSize = () => {
     const gridItemsContainer = document.querySelector('.grid-items');
@@ -22,6 +23,7 @@ window.addEventListener('resize', () => {
 });
 ensureGridSize();
 
+// 2
 // Handle main menu item clicks
 document.querySelectorAll('.menu-item').forEach(menuItem => {
     menuItem.addEventListener('click', () => {
@@ -68,6 +70,7 @@ document.querySelectorAll('.menu-item').forEach(menuItem => {
     });
 });
 
+// 3
 // Handle submenu item clicks
 document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
     subMenuItem.addEventListener('click', (event) => {
@@ -87,7 +90,7 @@ document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
                 anyVisible = true;
             }
         });
-
+        // 4
         // Toggle captions visibility
         if (anyVisible) {
             // Hide captions if they are already visible
@@ -117,6 +120,41 @@ document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
     });
 });
 
+// 5
+// What happens when we click on submenu items
+document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
+    subMenuItem.addEventListener('click', event => {
+        event.preventDefault(); // Prevent default anchor behavior
+
+        // Get the target ID from the submenu item
+        const targetId = subMenuItem.getAttribute('href').replace('#', '');
+
+        // Find matching grid items
+        const matchingItems = document.querySelectorAll(`#${targetId}-item1, #${targetId}-item2`);
+
+        // Remove the circle-effect class from all grid items
+        document.querySelectorAll('.grid-item-action, .grid-item-quality, .grid-item-concept')
+            .forEach(item => item.classList.remove('circle-effect'));
+
+        // Add the circle-effect class to matching grid items
+        matchingItems.forEach(item => {
+            item.classList.add('circle-effect');
+        });
+
+        // Reset circle back to default
+        document.getElementById('reset-button').addEventListener('click', () => {
+            document.querySelectorAll('.circle-effect').forEach(item => {
+                item.classList.remove('circle-effect');
+            });
+        });
+
+
+        // Reset URL to homepage
+        history.pushState(null, '', 'https://viltu08.github.io/Continuum/');
+    });
+});
+
+// 6
 // Custom cursor
 const cursor = document.querySelector('.custom-cursor');
 if (cursor) {

@@ -218,6 +218,12 @@ Gunmetal #122C34 (Title)
        z-index: 9000;
    }
 
+   .reset-button {
+    background-color: #c1af9f;
+       color: #ffffff;
+       z-index: 9000;
+   }
+
    .menu-action:hover {
        border: 2px solid #122C34;
    }
@@ -230,6 +236,9 @@ Gunmetal #122C34 (Title)
        border: 2px solid #122C34;
    }
 
+   .reset-button:hover {
+    border: 2px solid #122C34;
+}
 
    /* Sub-menu containers */
    .sub-menu-container {
@@ -469,6 +478,13 @@ Gunmetal #122C34 (Title)
        opacity: 1;
        visibility: visible;
        transform: translate(-50%, 40%) scale(2);
+   }
+
+   /* Circle effect for grid items when a subitem with same ID is clicked */
+   .circle-effect {
+       border-radius: 50%;
+       transition: border-radius 0.3s ease, transform 0.3s ease;
+       border: 2px solid #122C34;
    }
 
    /* Responsive design */
