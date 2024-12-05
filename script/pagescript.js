@@ -1,15 +1,17 @@
 // ChatGPT has been used to help understand iframe behavior and custom cursor
-// Function to check iframe content after a dynamic timeout
-function checkIframeWithTimeout(iframe, fallback, maxTimeout = 15000) {
+function checkIframeWithTimeout(iframe, fallback, maxTimeout = 10000) {
     let iframeLoaded = false;
 
-    // Event listener for successful iframe load
+    // Event listener for iframe load event
     iframe.addEventListener('load', () => {
         iframeLoaded = true;
-        console.log("Iframe loaded successfully.");
+        console.log("Iframe successfully loaded.");
+        // Ensure the iframe and fallback visibility is correct
+        iframe.style.display = 'block';
+        fallback.style.display = 'none';
     });
 
-    // Fallback logic after timeout
+    // Set a timeout to trigger the fallback if iframe does not load
     setTimeout(() => {
         if (!iframeLoaded) {
             console.error("Fallback triggered: Iframe did not load in time.");
@@ -23,8 +25,6 @@ function checkIframeWithTimeout(iframe, fallback, maxTimeout = 15000) {
 const iframe = document.getElementById('contentIframe');
 const fallback = document.getElementById('fallbackMessage');
 checkIframeWithTimeout(iframe, fallback, 10000); // 10-second timeout
-
-
 
 // Custom cursor
 const cursor = document.querySelector('.custom-cursor');
