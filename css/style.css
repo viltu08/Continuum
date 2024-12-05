@@ -338,18 +338,18 @@ Gunmetal #122C34 (Title)
 
    /* Sub menu colour change when hovering */
    .sub-menu-container#action-menu .sub-menu-item:hover {
-    color: #122C34;
-    border: 2px solid #122C34;
+       color: #122C34;
+       border: 2px solid #122C34;
    }
 
    .sub-menu-container#quality-menu .sub-menu-item:hover {
-    color: #122C34;
-    border: 2px solid #122C34;
+       color: #122C34;
+       border: 2px solid #122C34;
    }
 
    .sub-menu-container#concept-menu .sub-menu-item:hover {
-    color: #122C34;
-    border: 2px solid #122C34;
+       color: #122C34;
+       border: 2px solid #122C34;
    }
 
    /* Styles for action, quality, and concept grid items */
@@ -400,27 +400,7 @@ Gunmetal #122C34 (Title)
        position: relative;
    }
 
-
-   .grid-item-action .caption,
-   .grid-item-quality .caption,
-   .grid-item-concept .caption {
-       position: absolute;
-       bottom: 30px;
-       left: 50%;
-       transform: translateX(-50%);
-       background-color: #c1af9f;
-       color: #122c34;
-       padding: 5px 10px;
-       border-radius: 5px;
-       font-size: 14px;
-       text-align: center;
-       opacity: 0;
-       visibility: hidden;
-       transition: opacity 0.3s ease, visibility 0.3s ease;
-       z-index: 4000;
-   }
-
-   /* Hover effect: Scale filled cells, change border color and caption appears */
+   /* Hover effect on grid items */
    .grid-item-action:hover,
    .grid-item-quality:hover,
    .grid-item-concept:hover {
@@ -429,14 +409,66 @@ Gunmetal #122C34 (Title)
        z-index: 1000;
    }
 
+
+   /* Caption styles */
+   .grid-item-action .caption,
+   .grid-item-quality .caption,
+   .grid-item-concept .caption {
+       position: absolute;
+       bottom: calc(50% + 80px);
+       /* ChatGPT used to calculate position */
+       left: 50%;
+       transform: translateX(-50%);
+       background-color: #c1af9f;
+       color: #122C34;
+       padding: 10px;
+       border-radius: 5px;
+       font-size: 14px;
+       text-align: center;
+       opacity: 0;
+       visibility: hidden;
+       transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+       z-index: 4000;
+   }
+
+   /* Hover Caption styles */
    .grid-item-action:hover .caption,
    .grid-item-quality:hover .caption,
    .grid-item-concept:hover .caption {
        opacity: 1;
        visibility: visible;
-       transform: translateX(-50%) translateY(-20px);
-       bottom: 30px;
+       transform: translateX(-50%) translateY(-40px);
+       bottom: 10px;
        z-index: 6000;
+   }
+
+   /* Hover image styles */
+   .grid-item-action .hover-image,
+   .grid-item-quality .hover-image,
+   .grid-item-concept .hover-image {
+       position: absolute;
+       top: calc(50% + 40px);
+       /* ChatGPT used to calculate position */
+       left: 50%;
+       transform: translate(-50%, -50%) scale(1);
+       width: 80px;
+       height: 80px;
+       background-size: 200%;
+       background-position: center;
+       border-radius: 50%;
+       opacity: 0;
+       visibility: hidden;
+       transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+       z-index: 5000;
+   }
+
+   /* Show the image on hover */
+   .grid-item-action:hover .hover-image,
+   .grid-item-quality:hover .hover-image,
+   .grid-item-concept:hover .hover-image {
+       opacity: 1;
+       visibility: visible;
+       transform: translate(-50%, 40%) scale(2);
    }
 
    /* Responsive design */
