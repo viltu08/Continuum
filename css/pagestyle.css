@@ -218,3 +218,166 @@ a:hover {
     color: #ffffff;
     z-index: 9000;
 }
+
+/* Media Queries  */
+@media (max-width: 576px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+    }
+
+    .left-section, .right-section {
+        flex: none;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .notes-section {
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    a {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .tags {
+        font-size: 10pt;
+        padding: 5px 8px;
+    }
+
+    body {
+        padding: 8px;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+    }
+
+    .left-section, .right-section {
+        flex: none;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .notes-section {
+        width: 100%;
+        margin-top: 15px;
+        padding: 15px;
+    }
+
+    a {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    .tags {
+        font-size: 12pt;
+        padding: 8px 10px;
+    }
+
+    body {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .container {
+        flex-direction: row;
+        width: 90%;
+        height: auto;
+    }
+
+    .left-section, .right-section {
+        flex: 1;
+        width: 50%;
+        padding: 20px;
+    }
+
+    .notes-section {
+        width: 90%;
+        margin-top: 20px;
+        padding: 20px;
+    }
+
+    a {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .tags {
+        font-size: 14pt;
+        padding: 10px 12px;
+    }
+
+    body {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+    .container {
+        width: 85%;
+        max-width: 1200px;
+    }
+
+    .left-section, .right-section {
+        padding: 25px;
+    }
+
+    .notes-section {
+        width: 85%;
+        padding: 25px;
+    }
+
+    a {
+        font-size: 18px;
+        padding: 12px 25px;
+    }
+
+    .tags {
+        font-size: 15pt;
+        padding: 12px 15px;
+    }
+
+    body {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1201px) {
+    .container {
+        width: 90%;
+        max-width: 1400px;
+    }
+
+    .left-section, .right-section {
+        padding: 30px;
+    }
+
+    .notes-section {
+        width: 90%;
+        padding: 30px;
+    }
+
+    a {
+        font-size: 20px;
+        padding: 15px 30px;
+    }
+
+    .tags {
+        font-size: 16pt;
+        padding: 15px 20px;
+    }
+
+    body {
+        padding: 25px;
+    }
+}
