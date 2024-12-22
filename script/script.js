@@ -80,7 +80,7 @@ document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
         const targetId = subMenuItem.getAttribute('href').replace('#', ''); // Extract the target ID
 
         // Select all related grid-items
-        const matchingItems = document.querySelectorAll(`#${targetId}-item1, #${targetId}-item2`);
+        const matchingItems = document.querySelectorAll(`[id^="${targetId}-item"]`);
 
         // Check if any of the captions are currently visible
         let anyVisible = false;
@@ -130,7 +130,7 @@ document.querySelectorAll('.sub-menu-item').forEach(subMenuItem => {
         const targetId = subMenuItem.getAttribute('href').replace('#', '');
 
         // Find matching grid items
-        const matchingItems = document.querySelectorAll(`#${targetId}-item1, #${targetId}-item2`);
+        const matchingItems = document.querySelectorAll(`[id^="${targetId}-item"]`);
 
         // Remove the circle-effect class from all grid items
         document.querySelectorAll('.grid-item-action, .grid-item-quality, .grid-item-concept')
