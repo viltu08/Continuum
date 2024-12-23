@@ -5,15 +5,19 @@
 const ensureGridSize = () => {
     const gridItemsContainer = document.querySelector('.grid-items');
     if (gridItemsContainer) {
-        const columns = getComputedStyle(gridItemsContainer)
-            .getPropertyValue('grid-template-columns')
-            .split(' ').length;
-        if (columns > 0) {
-            const rowHeight = gridItemsContainer.offsetWidth / columns;
-            gridItemsContainer.style.gridAutoRows = `${rowHeight}px`;
-        }
+        // Get the container's width and calculate the width of each column for 20 columns
+        const containerWidth = gridItemsContainer.offsetWidth;
+        const columnWidth = containerWidth / 40; // Divide by 40 to ensure 40 columns
+
+        // Set the grid layout to have exactly 40 columns
+        gridItemsContainer.style.gridTemplateColumns = `repeat(40, ${columnWidth}px)`;
+
+        // Optionally, set the row height if needed (keeping it in proportion to column width)
+        const rowHeight = columnWidth; // Keep row height the same as column width, or adjust as needed
+        gridItemsContainer.style.gridAutoRows = `${rowHeight}px`;
     }
 };
+
 
 // Debounce resize event for better performance
 let resizeTimeout;
